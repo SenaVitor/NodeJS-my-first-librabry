@@ -5,13 +5,23 @@ function trataErro(erro){
     throw new Error(chalk.red(erro.code, 'não há arquivo no caminho'));
 }
 
-function pegaArquivo(caminho){
+async function pegaArquivo(caminho){
     const encoding = 'utf-8';
-    fs.promises
-    .readFile(caminho, encoding)
-    .then((texto) => console.log(chalk.green(texto)))
-    .catch((erro) => trataErro(erro));
+    try{
+        const texto = await fs.promises.readFile(caminho, encoding);
+        console.log(chalk.green(texto));
+    }catch(erro){
+        trataErro(erro);
+    }
 }
+
+// function pegaArquivo(caminho){
+//     const encoding = 'utf-8';
+//     fs.promises
+//     .readFile(caminho, encoding)
+//     .then((texto) => console.log(chalk.green(texto)))
+//     .catch((erro) => trataErro(erro));
+// }
 
 // function pegaArquivo(caminho){
 //     const encoding = 'utf-8';
