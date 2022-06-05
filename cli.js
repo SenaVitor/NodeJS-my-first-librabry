@@ -7,7 +7,7 @@ const caminho = process.argv; //Pega uma informação informada no terminal (Atu
 async function processaTexto(caminhoDeArquivo){
     const resultado = await pegaArquivo(caminho[2]);
     if(caminho[3] === 'validar'){
-        console.log(chalk.yellow('links validados'), validaUrls(resultado));    
+        console.log(chalk.yellow('links validados'), await validaUrls(resultado));    
     }else{
         console.log(chalk.yellow('Lista de links'), resultado);
     }
